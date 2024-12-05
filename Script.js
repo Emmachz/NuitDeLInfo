@@ -34,15 +34,15 @@ function gameLoop() {
 
 // Draw everything
 function drawGame() {
-    // Draw the background
-    ctx.fillStyle = "#001f3f"; // Deep blue
-    ctx.fillRect(0, 0, canvasSize, canvasSize);
-
-    // Draw the grid
-    ctx.strokeStyle = "#004080"; // Light ocean blue
+    // Draw the background as a checkerboard
     for (let x = 0; x < canvasSize; x += tileSize) {
         for (let y = 0; y < canvasSize; y += tileSize) {
-            ctx.strokeRect(x, y, tileSize, tileSize);
+            if ((x / tileSize + y / tileSize) % 2 === 0) {
+                ctx.fillStyle = "#006994"; // Lighter ocean blue
+            } else {
+                ctx.fillStyle = "#004f73"; // Darker ocean blue
+            }
+            ctx.fillRect(x, y, tileSize, tileSize);
         }
     }
 
