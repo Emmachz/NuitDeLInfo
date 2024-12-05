@@ -68,9 +68,11 @@ function updateSnake() {
     const head = { x: snake[0].x + direction.x * tileSize, y: snake[0].y + direction.y * tileSize };
 
     // Check if any food is eaten
+    let foodEaten = false;
     foods = foods.map(food => {
         if (head.x === food.x && head.y === food.y) {
             score++;
+            foodEaten = true; // Mark that food has been eaten
             // Create new food at a random position with the same color
             return { x: getRandomPosition(), y: getRandomPosition(), color: food.color };
         } else {
@@ -79,8 +81,9 @@ function updateSnake() {
     });
 
     snake.unshift(head); // Add new head
-    if (!foods.some(food => head.x === food.x && head.y === food.y)) {
-        snake.pop(); // Remove the tail if no food is eaten
+    // Only remove the tail if no food was eaten, otherwise the snake grows
+    if (!foodEaten) {
+        snake.pop();
     }
 }
 
