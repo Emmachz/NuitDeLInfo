@@ -22,8 +22,11 @@ let score = 0;
 // Game Loop
 function gameLoop() {
     if (checkCollision()) {
-        alert(`Game Over! Your score: ${score}`);
-        resetGame();
+        setTimeout(() => {
+            alert(`Game Over! Your score: ${score}`);
+            resetGame();
+            gameLoop(); // Restart the game after reset
+        }, 10);
         return;
     }
 
