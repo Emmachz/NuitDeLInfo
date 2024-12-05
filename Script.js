@@ -12,10 +12,10 @@ canvas.height = canvasSize;
 let snake = [{ x: 200, y: 200 }];
 let direction = { x: 0, y: 0 };
 let foods = [
-    { x: getRandomPosition(), y: getRandomPosition() },
-    { x: getRandomPosition(), y: getRandomPosition() },
-    { x: getRandomPosition(), y: getRandomPosition() },
-    { x: getRandomPosition(), y: getRandomPosition() }
+    { x: getRandomPosition(), y: getRandomPosition(), color: "blue" },
+    { x: getRandomPosition(), y: getRandomPosition(), color: "green" },
+    { x: getRandomPosition(), y: getRandomPosition(), color: "yellow" },
+    { x: getRandomPosition(), y: getRandomPosition(), color: "red" }
 ];
 let score = 0;
 
@@ -51,8 +51,10 @@ function drawGame() {
     snake.forEach(segment => ctx.fillRect(segment.x, segment.y, tileSize, tileSize));
 
     // Draw the foods
-    ctx.fillStyle = "#ff5733"; // Orange for contrasting food
-    foods.forEach(food => ctx.fillRect(food.x, food.y, tileSize, tileSize));
+    foods.forEach(food => {
+        ctx.fillStyle = food.color; // Set the color of the food
+        ctx.fillRect(food.x, food.y, tileSize, tileSize);
+    });
 
     // Update the score
     document.getElementById("score").textContent = score;
@@ -66,8 +68,8 @@ function updateSnake() {
     foods = foods.map(food => {
         if (head.x === food.x && head.y === food.y) {
             score++;
-            // Create new food at a random position
-            return { x: getRandomPosition(), y: getRandomPosition() };
+            // Create new food at a random position with the same color
+            return { x: getRandomPosition(), y: getRandomPosition(), color: food.color };
         } else {
             return food;
         }
@@ -105,10 +107,10 @@ function resetGame() {
     snake = [{ x: 200, y: 200 }];
     direction = { x: 0, y: 0 };
     foods = [
-        { x: getRandomPosition(), y: getRandomPosition() },
-        { x: getRandomPosition(), y: getRandomPosition() },
-        { x: getRandomPosition(), y: getRandomPosition() },
-        { x: getRandomPosition(), y: getRandomPosition() }
+        { x: getRandomPosition(), y: getRandomPosition(), color: "blue" },
+        { x: getRandomPosition(), y: getRandomPosition(), color: "green" },
+        { x: getRandomPosition(), y: getRandomPosition(), color: "yellow" },
+        { x: getRandomPosition(), y: getRandomPosition(), color: "red" }
     ];
     score = 0;
 }
