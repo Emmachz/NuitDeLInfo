@@ -1,0 +1,9 @@
+<div class="start-game-container">
+  <img src="assets/icones/Pizza.png" class="image" alt="snake-img">
+  <img src="assets/icones/snake.jpg" class="image2" alt="snake-img">
+  <section class="play-button">
+    <p>CROQUE-SERPENT</p>
+    <button (click)="openPopup()">Jouer</button>
+  </section>
+</div>
+<app-snack-game *ngIf="popupOpen" (popupClosed)="closePopup()"></app-snack-game>

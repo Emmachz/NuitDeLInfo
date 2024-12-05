@@ -1,0 +1,31 @@
+<div class="container">
+
+  <article class="info-container">
+
+    <section *ngIf="bestUserScore" class="user-info">
+      <p><i>Taille du serpent:</i> {{ snake.tail.length - 2 }}</p>
+      <p><i>Votre meilleur score:</i> {{currentUser.highScore}}</p>
+      <p><i>Temps de jeu:</i> {{ time * timestep / 1000 | number:'1.0-0' }} secondes</p>
+    </section>
+
+    <p *ngIf="bestUserScore"><i>Meilleur score du jeu fait par le
+      joueur {{bestUserScore.lastName}} {{bestUserScore.firstName}}</i>: {{bestUserScore.highScore}}</p>
+
+    <section class="dead" *ngIf="dead">
+      <p>Oh non ! Tu as perdu !</p>
+      <div class="button-container">
+        <button (click)="restartGame()">Rejouer</button>
+        <button (click)="fermerPopup()">Fermer</button>
+      </div>
+    </section>
+
+  </article>
+
+  <section class="cells">
+    <div class="cell" [ngClass]="{'snake': snake.isSnakeCell(idx), 'border': isBorderCell(idx)}"
+         *ngFor="let _ of cells; let idx = index;">
+      <img *ngIf="isFood(idx)" src="assets/icones/pizza_icone.png" alt="Egg Image">
+    </div>
+  </section>
+
+</div>
