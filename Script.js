@@ -10,10 +10,10 @@ canvas.height = canvasSize;
 
 // Load images for foods
 const foodImages = [
-    loadImage('bottle-plastic.webp'),
-    loadImage('glass.png'),
-    loadImage('cardboard.png'),
-    loadImage('sponge.png')
+    loadImage('bottle-plastic.webp'), // Plastique
+    loadImage('glass.png'),            // Verre
+    loadImage('cardboard.png'),        // Carton
+    loadImage('sponge.png')            // Éponge
 ];
 
 // Snake Colors
@@ -30,6 +30,14 @@ let foods = [
     { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[3] }
 ];
 let score = 0;
+
+// Define food-color matches
+const foodColorMatch = {
+    "yellow": foodImages[0],  // Plastique
+    "green": foodImages[1],   // Verre
+    "blue": foodImages[2],    // Carton
+    "red": foodImages[3]      // Éponge
+};
 
 // Game Loop
 function gameLoop() {
@@ -82,6 +90,19 @@ function updateSnake() {
     let foodEaten = false;
     foods = foods.map(food => {
         if (head.x === food.x && head.y === food.y) {
+            // Check if the snake's current color matches the food type
+            const currentSnakeColor = snakeColors[currentSnakeColorIndex];
+            const matchingImage = foodColorMatch[currentSnakeColor];
+            
+            if (food.image !== matchingImage) {
+                // If colors do not match, game over
+                alert(`Game Over! You ate the wrong type of food. Your score: ${score}`);
+                resetGame();
+                gameLoop();
+                return;
+            }
+
+            // If the correct food is eaten
             score++;
             foodEaten = true; // Mark that food has been eaten
 
