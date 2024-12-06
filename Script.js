@@ -1,15 +1,20 @@
 // DOM Elements
 
 alert(`
-    Le Recyclage et les Couleurs des Bacs de Tri
+Le Recyclage et les Couleurs des Bacs de Tri  
+Le tri des déchets est essentiel pour recycler efficacement.
+-Bleu : Carton et papier.
+-Vert : Verre.
+-Jaune : Plastique et métaux .
+-Rouge : Déchets non recyclables ou spéciaux.
     
-    Le tri des déchets est essentiel pour recycler efficacement. Voici les principales couleurs des bacs et leur signification :
-    
-    Bleu : Carton et papier (journaux, boîtes).
-    Vert : Verre (bouteilles, bocaux).
-    Jaune : Plastique et métaux (bouteilles, canettes).
-    Rouge : Déchets non recyclables ou spéciaux (éponges, textiles souillés).
-    En triant vos déchets correctement, vous aidez à préserver les ressources et à réduire la pollution. Respectez les couleurs pour un recyclage efficace !` );const canvas = document.getElementById("gameCanvas");
+Règles : Il s'agit d'une jeu snakes dont le serpant est une poubelle de recyclage. Pour gagner il faut recycler les objets correspondant à la bonne couleur de pubelle. 
+Le carre au centre est donc une poubelle
+Le fond est l'océan à protéger
+Les objects sont : Une boite en carton, du verre, une boutelle en plastique, une éponge 
+
+A vos trie!!!!
+    ` );const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 // Game Constants
