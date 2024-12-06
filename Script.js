@@ -3,8 +3,8 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 // Game Constants
-const tileSize = 20;
-const canvasSize = 400;
+const tileSize = 50;
+const canvasSize = 600;
 canvas.width = canvasSize;
 canvas.height = canvasSize;
 
@@ -13,7 +13,7 @@ const foodImages = [
     loadImage('bottle-plastic.webp'),
     loadImage('glass.png'),
     loadImage('cardboard.png'),
-    loadImage('tooth-brush.png')
+    loadImage('sponge.png')
 ];
 
 // Game Variables
