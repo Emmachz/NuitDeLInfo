@@ -8,10 +8,14 @@ Le tri des déchets est essentiel pour recycler efficacement.
 -Jaune : Plastique et métaux .
 -Rouge : Déchets non recyclables ou spéciaux.
     
-Règles : Il s'agit d'une jeu snakes dont le serpant est une poubelle de recyclage. Pour gagner il faut recycler les objets correspondant à la bonne couleur de pubelle. 
+Règles : Il s'agit d'une jeu snake dont le serpant est une poubelle de recyclage. Pour gagner il faut recycler les objets correspondant à la bonne couleur de poubelle. 
 Le carre au centre est donc une poubelle
-Le fond est l'océan à protéger
-Les objects sont : Une boite en carton, du verre, une boutelle en plastique, une éponge 
+Le fond est l'océan qui est à protéger
+Les objects sont : 
+-Une boite en carton
+-Du verre
+-Une boutelle en plastique
+-Une éponge 
 
 A vos trie!!!!
     ` );const canvas = document.getElementById("gameCanvas");
