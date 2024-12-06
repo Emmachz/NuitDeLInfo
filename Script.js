@@ -16,6 +16,10 @@ const foodImages = [
     loadImage('sponge.png')
 ];
 
+// Snake Colors
+const snakeColors = ["blue", "green", "yellow", "red"];
+let currentSnakeColorIndex = 0;
+
 // Game Variables
 let snake = [{ x: 200, y: 200 }];
 let direction = { x: 0, y: 0 };
@@ -58,7 +62,7 @@ function drawGame() {
     }
 
     // Draw the snake
-    ctx.fillStyle = "#00ff99"; // Light green for snake
+    ctx.fillStyle = snakeColors[currentSnakeColorIndex]; // Use the current snake color
     snake.forEach(segment => ctx.fillRect(segment.x, segment.y, tileSize, tileSize));
 
     // Draw the foods (as images)
@@ -80,6 +84,10 @@ function updateSnake() {
         if (head.x === food.x && head.y === food.y) {
             score++;
             foodEaten = true; // Mark that food has been eaten
+
+            // Change the snake's color to the next one in the list
+            currentSnakeColorIndex = (currentSnakeColorIndex + 1) % snakeColors.length;
+
             // Create new food at a random position with the same image
             return { x: getRandomPosition(), y: getRandomPosition(), image: food.image };
         } else {
@@ -133,6 +141,7 @@ function resetGame() {
         { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[3] }
     ];
     score = 0;
+    currentSnakeColorIndex = 0; // Reset snake color to the initial color
 }
 
 // Event Listener for Keyboard Input
