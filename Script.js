@@ -8,14 +8,22 @@ const canvasSize = 400;
 canvas.width = canvasSize;
 canvas.height = canvasSize;
 
+// Load images for foods
+const foodImages = [
+    loadImage('bottle-plastic.webp'),
+    loadImage('glass.png'),
+    loadImage('cardboard.png'),
+    loadImage('tooth-brush.png')
+];
+
 // Game Variables
 let snake = [{ x: 200, y: 200 }];
 let direction = { x: 0, y: 0 };
 let foods = [
-    { x: getRandomPosition(), y: getRandomPosition(), color: "blue" },
-    { x: getRandomPosition(), y: getRandomPosition(), color: "green" },
-    { x: getRandomPosition(), y: getRandomPosition(), color: "yellow" },
-    { x: getRandomPosition(), y: getRandomPosition(), color: "red" }
+    { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[0] },
+    { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[1] },
+    { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[2] },
+    { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[3] }
 ];
 let score = 0;
 
@@ -53,10 +61,9 @@ function drawGame() {
     ctx.fillStyle = "#00ff99"; // Light green for snake
     snake.forEach(segment => ctx.fillRect(segment.x, segment.y, tileSize, tileSize));
 
-    // Draw the foods
+    // Draw the foods (as images)
     foods.forEach(food => {
-        ctx.fillStyle = food.color; // Set the color of the food
-        ctx.fillRect(food.x, food.y, tileSize, tileSize);
+        ctx.drawImage(food.image, food.x, food.y, tileSize, tileSize);
     });
 
     // Update the score
@@ -73,8 +80,8 @@ function updateSnake() {
         if (head.x === food.x && head.y === food.y) {
             score++;
             foodEaten = true; // Mark that food has been eaten
-            // Create new food at a random position with the same color
-            return { x: getRandomPosition(), y: getRandomPosition(), color: food.color };
+            // Create new food at a random position with the same image
+            return { x: getRandomPosition(), y: getRandomPosition(), image: food.image };
         } else {
             return food;
         }
@@ -108,15 +115,22 @@ function getRandomPosition() {
     return Math.floor(Math.random() * (canvasSize / tileSize)) * tileSize;
 }
 
+// Load image
+function loadImage(src) {
+    const img = new Image();
+    img.src = src;
+    return img;
+}
+
 // Reset Game
 function resetGame() {
     snake = [{ x: 200, y: 200 }];
     direction = { x: 0, y: 0 };
     foods = [
-        { x: getRandomPosition(), y: getRandomPosition(), color: "blue" },
-        { x: getRandomPosition(), y: getRandomPosition(), color: "green" },
-        { x: getRandomPosition(), y: getRandomPosition(), color: "yellow" },
-        { x: getRandomPosition(), y: getRandomPosition(), color: "red" }
+        { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[0] },
+        { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[1] },
+        { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[2] },
+        { x: getRandomPosition(), y: getRandomPosition(), image: foodImages[3] }
     ];
     score = 0;
 }
